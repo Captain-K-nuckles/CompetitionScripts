@@ -27,8 +27,6 @@ password="Changeme-2018"
 
 #sshpass -p "$password" ssh -o StrictHostKeyChecking=no aflickem@192.168.37.134 'echo "Hello and Goodbye"'
 
-echo -e "\n\n\n" | ssh-keygen -t rsa -b 2048
-
 
 for i in {1..11}
 do
