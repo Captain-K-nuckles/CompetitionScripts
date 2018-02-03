@@ -31,4 +31,19 @@ for i in {1..11}; do
 	fi
 done
 
+usernames=`cut -d: -f1,7 /etc/passwd`
 
+arr=($usernames)
+
+for i in "${arr[@]}"; do
+	if [[ $i == *'/bin/bash'* || $i == *'/bin/sh'* ]]; then
+		echo $i " has a shell. Shall I remove if no I will ask to change the password? (yes or no) "
+		read choice
+		if [[ $choice == "yes" ]]; then
+			userdel $i
+		elif [[ $choice == "no" ]]; then
+			username=`cat /etc/passwd | grep "$i" | cut -d: -f1`
+			passwd $username
+		fi
+	fi
+done
