@@ -1,3 +1,5 @@
+#!/bin/bash
+
 #These are temporary until we know the scoring IP
 
 if [[ $# -ne 1 ]]; then
@@ -28,3 +30,5 @@ for i in {1..11}; do
 		iptables -A INPUT -s 10.3.$i.20 -j DROP
 	fi
 done
+
+

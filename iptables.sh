@@ -49,13 +49,14 @@ usernames=`cut -d: -f1,7 /etc/passwd`
 
 arr=($usernames)
 
-for i in "${port[@]}"; do
+for i in "${arr[@]}"; do
 	if [[ $i == *'/bin/bash'* ]]; then
 		echo $i " has a bash shell. Shall I remove if no I will ask to change the password? (yes or no) "
 		read choice
 		if [[ $choice == "yes" ]]; then
 			userdel $i
 		elif [[ $choice == "no" ]]; then
+			username=`cut -d: -f1 $usernames`
 			passwd $i
 		fi
 	fi
