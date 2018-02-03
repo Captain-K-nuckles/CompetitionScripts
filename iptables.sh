@@ -42,6 +42,7 @@ for i in "${port[@]}"; do
 done
 
 iptables -A INPUT -p icmp --icmp-type 8 -s $scoringIP -m state --state NEW,ESTABLISHED,RELATED -j ACCEPT
+iptables -A OUTPUT -p icmp --icmp-type 0 -s $scoringIP -m state --state ESTABLISHED,RELATED -j ACCEPT
 
 ifconfig $interface up
 
